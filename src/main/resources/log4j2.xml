@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="all" strict="true" name="XMLConfigTest">
+    <Properties>
+        <Property name="filename">logs/commonlibrary.log</Property>
+    </Properties>
+    <Filter type="ThresholdFilter" level="all"/>
+    <Appenders>
+        <param name="Append" value="true" />
+        <param name="Encoding" value="UTF-8" />
+        <param name="MaxFileSize" value="1MB"/>
+        <param name="DatePattern" value=".yyyy-MM-dd HH:mm:ss:SSS"/>
+        <Appender type="File" name="ApiLogger" fileName="${filename}">
+            <Layout type="PatternLayout" pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} [%t] [%-4p] %m%n"/>
+        </Appender>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache.logging.log4j.commonlibrary" level="all" additivity="false">
+            <AppenderRef ref="ApiLogger"/>
+        </Logger>
+        <Root level="all">
+            <AppenderRef ref="commonlibrary"/>
+        </Root>
+    </Loggers>
+</Configuration>
